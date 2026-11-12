@@ -1,29 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<title>VForce TopCut</title>
-<!-- Home Screen icon and name (iPhone and Android) -->
-<link rel="apple-touch-icon" sizes="180x180" href="vf-icon-white-180%281%29.png">
-<link rel="icon" type="image/png" href="vf-icon-white-180%281%29.png">
-<meta name="apple-mobile-web-app-title" content="TopCut">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="theme-color" content="#1F2937">
-<style>
-  html, body { margin: 0; height: 100%; background: #1F2937; }
-  iframe { display: block; border: 0; width: 100%; height: 100vh; height: 100dvh; }
-</style>
-</head>
-<body>
-<!-- VForce TopCut front door: the app runs inside this frame -->
-<iframe id="app" title="VForce TopCut" allow="clipboard-read; clipboard-write"></iframe>
-<script>
-  var APP = 'https://script.google.com/macros/s/AKfycbzbq3hJWGz3GQLXXGWEB_0r5tYMefV8-QLmrhN5cWHVhhq2QgB-VaqxwahdGFTRYPhJ1w/exec';
-  // Pass along anything after "?" (sign-in links, Home-screen keys, event links, invites)
-  document.getElementById('app').src = APP + location.search;
-</script>
-</body>
-</html>
+/**
+ * VForce TopCut moved to https://vforcetopcut.com
+ * Every old link (the flyer QR code, bookmarks, emails) now shows this page.
+ */
+function movedPage_(p) {
+  let url = 'https://vforcetopcut.com/';
+  if (/^E\d+$/i.test(p.event || '')) url += '#/event/' + String(p.event).toUpperCase();
+  else if (/^[A-Z2-9]{8}$/i.test(p.crew || '')) url += '?crew=' + String(p.crew).toUpperCase();
+  const html =
+    '<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">' +
+    '<title>VForce TopCut moved</title></head>' +
+    '<body style="margin:0;font-family:Arial,Helvetica,sans-serif;background:#111827;min-height:100vh;padding:40px 16px;box-sizing:border-box">' +
+    '<div style="max-width:440px;margin:0 auto;background:#1F2937;border:2px solid #374151;border-radius:4px;overflow:hidden">' +
+    '<div style="padding:12px 18px;border-bottom:3px solid #10B981;font-size:20px;font-weight:bold;color:#F9FAFB">VForce <span style="color:#10B981">TopCut</span> has moved</div>' +
+    '<div style="padding:18px;font-size:16px;line-height:1.5;color:#F9FAFB">' +
+    '<p style="margin-top:0">We have a new home: <b>vforcetopcut.com</b>. It\'s faster, and everything came with us: your account, your events and your crew.</p>' +
+    '<p>Sign in with the <b>same email</b> you used here. We\'ll email you a 6-digit code.</p>' +
+    '<a href="' + url + '" target="_top" style="display:block;text-align:center;background:#10B981;color:#111827;text-decoration:none;font-weight:bold;font-size:17px;padding:14px 20px;border:2px solid #111827;border-bottom-width:4px;border-radius:3px;margin-top:18px">Go to vforcetopcut.com</a>' +
+    '<p style="font-size:13px;color:#9CA3AF;margin-bottom:0">Tip: on your phone, add the new site to your Home Screen.</p>' +
+    '</div></div></body></html>';
+  return HtmlService.createHtmlOutput(html).setTitle('VForce TopCut moved')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
